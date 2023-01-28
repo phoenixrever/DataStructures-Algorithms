@@ -23,7 +23,9 @@ public class MiGong {
 		map[3][2] = 1;
 //		map[1][2] = 1;
 //		map[2][2] = 1;
-		
+
+		//堵住路口 演示走不通的情况 这样才会出现3
+		map[2][2] =1;
 		// 输出地图
 		System.out.println("地图的情况");
 		for (int i = 0; i < 8; i++) {
@@ -34,8 +36,8 @@ public class MiGong {
 		}
 		
 		//使用递归回溯给小球找路
-		//setWay(map, 1, 1);
-		setWay2(map, 1, 1);
+		setWay(map, 1, 1);
+		//setWay2(map, 1, 1);
 		
 		//输出新的地图, 小球走过，并标识过的递归
 		System.out.println("小球走过，并标识过的 地图的情况");
@@ -79,6 +81,18 @@ public class MiGong {
 					return true;
 				} else {
 					//说明该点是走不通，是死路
+					//最后打印的时候map没有 中没有3 是因为从头到尾并没有遇到死路
+					//也就是根本不会运行到这一行 在前面的return true里面程序返回了
+					//如果我们堵住其中一个路口 map[2][2]=1  就会出现3 了
+					//1 1 1 1 1 1 1
+					//1 2 2 2 0 0 1
+					//1 3 1 2 0 0 1
+					//1 1 1 2 0 0 1
+					//1 0 0 2 0 0 1
+					//1 0 0 2 0 0 1
+					//1 0 0 2 2 2 1
+					//1 1 1 1 1 1 1
+
 					map[i][j] = 3;
 					return false;
 				}
