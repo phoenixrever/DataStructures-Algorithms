@@ -22,7 +22,8 @@ public class QuickSort {
 		String date1Str = simpleDateFormat.format(data1);
 		System.out.println("排序前的时间是=" + date1Str);
 		
-		quickSort(arr, 0, arr.length-1);
+		//quickSort(arr, 0, arr.length-1);
+		sort(arr, 0, arr.length-1);
 		
 		Date data2 = new Date();
 		String date2Str = simpleDateFormat.format(data2);
@@ -30,6 +31,8 @@ public class QuickSort {
 		//System.out.println("arr=" + Arrays.toString(arr));
 	}
 
+
+	//整个方法不好
 	public static void quickSort(int[] arr,int left, int right) {
 		int l = left; //左下标
 		int r = right; //右下标
@@ -83,5 +86,35 @@ public class QuickSort {
 		}
 		
 		
+	}
+
+	//这个方法好理解
+	public static void sort(int arr[], int low, int high) {
+		int l = low;
+		int h = high;
+		int povit = arr[low];
+
+		while (l < h) {
+			while (l < h && arr[h] >= povit)
+				h--;
+			if (l < h) {
+				arr[l] = arr[h];
+				l++;
+			}
+
+			while (l < h && arr[l] <= povit)
+				l++;
+
+			if (l < h) {
+				arr[h] = arr[l];
+				h--;
+			}
+		}
+		arr[l] = povit;
+		//System.out.print("l=" + (l + 1) + "h=" + (h + 1) + "povit=" + povit + "\n");
+		if (l - 1 > low)
+			sort(arr, low, l - 1);
+		if (h + 1 < high)
+			sort(arr, h + 1, high);
 	}
 }

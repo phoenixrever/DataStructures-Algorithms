@@ -71,7 +71,7 @@ public class FibonacciSearch {
 				//说明
 				//1. 全部元素 = 前面的元素 + 后边元素
 				//2. f[k] = f[k-1] + f[k-2]
-				//3. 因为后面我们有f[k-2] 所以可以继续拆分 f[k-1] = f[k-3] + f[k-4]
+				//3. 因为后面我们有f[k-2] 所以可以继续拆分 f[k-2] = f[k-3] + f[k-4]
 				//4. 即在f[k-2] 的前面进行查找 k -=2
 				//5. 即下次循环 mid = f[k - 1 - 2] - 1
 				k -= 2;
@@ -80,6 +80,7 @@ public class FibonacciSearch {
 				if(mid <= high) {
 					return mid;
 				} else {
+					//说明mid已经越界了 超过原来数组的大小 到填充的数据里面去了
 					return high;
 				}
 			}

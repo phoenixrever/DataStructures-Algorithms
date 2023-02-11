@@ -19,9 +19,10 @@ public class InsertSort {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date1Str = simpleDateFormat.format(data1);
 		System.out.println("排序前的时间是=" + date1Str);
-		
-		insertSort(arr); //调用插入排序算法
-		
+		long start = System.currentTimeMillis();
+		insertSort2(arr); //调用插入排序算法
+		long end = System.currentTimeMillis();
+		System.out.println(end-start);
 		Date data2 = new Date();
 		String date2Str = simpleDateFormat.format(data2);
 		System.out.println("排序前的时间是=" + date2Str);
@@ -32,7 +33,20 @@ public class InsertSort {
 		
 		
 	}
-	
+
+	//for循环版 有问题 比他写的时间多2倍左右
+	//这样写等于冒泡排序 不知道怎么改进
+	public static void insertSort2(int[] a) {
+		for (int i = 0; i < a.length-1; i++) {
+			for (int j = i+1; j >0 && a[j]<a[j-1]; j--) {
+				int temp=a[j];
+				a[j]=a[j-1];
+				a[j-1]=temp;
+			}
+		}
+	}
+
+
 	//插入排序
 	public static void insertSort(int[] arr) {
 		int insertVal = 0;

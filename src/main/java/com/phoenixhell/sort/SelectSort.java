@@ -22,7 +22,7 @@ public class SelectSort {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date1Str = simpleDateFormat.format(data1);
 		System.out.println("排序前的时间是=" + date1Str);
-		
+
 		selectSort(arr);
 		
 		
@@ -35,7 +35,24 @@ public class SelectSort {
 		
 		
 	}
-	
+
+	//我原先的方法 不好 不管是不是最小都交换增加了时间复杂度  只在 确定了最小的下标再交换就行
+	//另外 min就是复制交换变量不用再设置temp了
+	//还要注意 只要 length-1 次  最后一个数位置以及确定了 不需要在比了
+	public void selectSort2(int[] a) {
+		for (int i = 0; i < a.length-1; i++) {
+			int min = a[i];
+			for (int j = i + 1; j < a.length; j++) {
+				if (a[j] < min) {
+					int temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+					min=a[i];
+				}
+			}
+		}
+	}
+
 	//选择排序
 	public static void selectSort(int[] arr) {
 		
@@ -54,6 +71,7 @@ public class SelectSort {
 			}
 
 			// 将最小值，放在arr[0], 即交换
+			//if条件 一开始的i就是最小值的时候不需要交换
 			if (minIndex != i) {
 				arr[minIndex] = arr[i];
 				arr[i] = min;
